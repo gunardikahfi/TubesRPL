@@ -97,20 +97,35 @@ public class Transaksi {
         return name;
     }
     
-//    public String getAlmat(String cari){
-//        String Almat = null;
-//        ResultSet rs=null;
-//        DatabaseAtm db=new DatabaseAtm();
-//        try {
-//            rs=db.getData("select Alamat from nasabah where Norek='"+cari+"';");
-//            while(rs.next()){
-//                Almat=rs.getString("Alamat");
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
-//        return Almat;
-//    }
+public int getTagihan(String cari){
+        int tagihan = 0;
+        ResultSet rs=null;
+        DatabaseAtm db=new DatabaseAtm();
+        try {
+            rs=db.getData("select jml_tagihan from pembrs where id_pembayaran='"+cari+"';");
+            while(rs.next()){
+                tagihan=rs.getInt("jml_tagihan");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return tagihan;
+    }
+    
+    public String getJenisBayar(String cari){
+        String jenis = null;
+        ResultSet rs=null;
+        DatabaseAtm db=new DatabaseAtm();
+        try {
+            rs=db.getData("select jenis from pembrs where id_pembayaran='"+cari+"';");
+            while(rs.next()){
+                jenis=rs.getString("jenis");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return jenis;
+    }
     
     public void updateTransaksi(String norek,String PIN,String nama,String alamat,String Tgl_Transaksi, int saldo){
          DatabaseAtm db = new DatabaseAtm();
